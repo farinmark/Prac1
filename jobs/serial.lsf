@@ -1,0 +1,18 @@
+#!/bin/bash
+#BSUB -J p13_serial
+#BSUB -n 1
+#BSUB -W 00:30
+#BSUB -R "affinity[core(1)]"
+#BSUB -o serial.%J.out
+#BSUB -e serial.%J.err
+# Серия serial: 1 прогрев (repeat 0) + 3 повтора на каждую конфигурацию.
+export OMP_PROC_BIND=close OMP_PLACES=cores
+echo "host=$(hostname) LSB_JOBID=$LSB_JOBID cpus=$(taskset -pc $$ | sed 's/.*: //')"
+for g in "20 20" "40 40" "80 80"; do
+    set -- $g
+    for r in 0 1 2 3; do
+        echo "### grid=${1}x${2} repeat=$r"
+        ./bin/poisson_serial -M $1 -N $2
+    done
+done
+

@@ -1,0 +1,17 @@
+#!/bin/bash
+#BSUB -J p13_omp_80
+#BSUB -n 1
+#BSUB -W 00:15
+#BSUB -R "affinity[core(16)]"
+#BSUB -o omp_80.%J.out
+#BSUB -e omp_80.%J.err
+# Серия omp_80: 1 прогрев (repeat 0) + 3 повтора на каждую конфигурацию.
+export OMP_PROC_BIND=close OMP_PLACES=cores
+echo "host=$(hostname) LSB_JOBID=$LSB_JOBID cpus=$(taskset -pc $$ | sed 's/.*: //')"
+for t in 1 4 16; do
+    for r in 0 1 2 3; do
+        echo "### grid=80x80 threads=$t repeat=$r"
+        OMP_NUM_THREADS=$t ./bin/poisson_omp -M 80 -N 80
+    done
+done
+
