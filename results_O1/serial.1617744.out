@@ -1,0 +1,180 @@
+Sender: LSF System <lsfadmin@polus-c4-ib.bmc.hpc.cs.msu.ru>
+Subject: Job 1617744: <p13_serial> in cluster <MSUCluster> Done
+
+Job <p13_serial> was submitted from host <polus-ib.bmc.hpc.cs.msu.ru> by user <edu-cmc-skmodel26-609-09> in cluster <MSUCluster> at Tue Nov 10 23:19:45 2026
+Job was executed on host(s) <polus-c4-ib.bmc.hpc.cs.msu.ru>, in queue <short>, as user <edu-cmc-skmodel26-609-09> in cluster <MSUCluster> at Tue Nov 10 23:19:45 2026
+</home_edu/edu-cmc-skmodel26-609/edu-cmc-skmodel26-609-09> was used as the home directory.
+</home_edu/edu-cmc-skmodel26-609/edu-cmc-skmodel26-609-09/Prac1> was used as the working directory.
+Started at Tue Nov 10 23:19:45 2026
+Terminated at Tue Nov 10 23:21:44 2026
+Results reported at Tue Nov 10 23:21:44 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J p13_serial
+#BSUB -n 1
+#BSUB -W 00:30
+#BSUB -R "affinity[core(1)]"
+#BSUB -o serial.%J.out
+#BSUB -e serial.%J.err
+# Серия serial: 1 прогрев (repeat 0) + 3 повтора на каждую конфигурацию.
+export OMP_PROC_BIND=close OMP_PLACES=cores
+echo "host=$(hostname) LSB_JOBID=$LSB_JOBID cpus=$(taskset -pc $$ | sed 's/.*: //')"
+for g in "20 20" "40 40" "80 80" "400 600" "800 1200"; do
+    set -- $g
+    for r in 0 1 2 3; do
+        echo "### grid=${1}x${2} repeat=$r"
+        ./bin/poisson_serial -M $1 -N $2
+    done
+done
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   118.00 sec.
+    Max Memory :                                 65 MB
+    Average Memory :                             59.00 MB
+    Total Requested Memory :                     -
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                5
+    Run time :                                   123 sec.
+    Turnaround time :                            119 sec.
+
+The output (if any) follows:
+
+host=polus-c4-ib.bmc.hpc.cs.msu.ru LSB_JOBID=1617744 cpus=128-135
+### grid=20x20 repeat=0
+code=serial M=20 N=20 threads=1 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=58
+norms: step_E=9.410338e-09 relres_final=1.756239e-09 relres_true=1.756239e-09
+functional: J_final=-7.087172398760496e+02 J_violations=0
+time: setup=0.000105 solve=0.000226 total=0.000335 (s)
+### grid=20x20 repeat=1
+code=serial M=20 N=20 threads=1 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=58
+norms: step_E=9.410338e-09 relres_final=1.756239e-09 relres_true=1.756239e-09
+functional: J_final=-7.087172398760496e+02 J_violations=0
+time: setup=0.000102 solve=0.000225 total=0.000331 (s)
+### grid=20x20 repeat=2
+code=serial M=20 N=20 threads=1 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=58
+norms: step_E=9.410338e-09 relres_final=1.756239e-09 relres_true=1.756239e-09
+functional: J_final=-7.087172398760496e+02 J_violations=0
+time: setup=0.000099 solve=0.000225 total=0.000328 (s)
+### grid=20x20 repeat=3
+code=serial M=20 N=20 threads=1 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=58
+norms: step_E=9.410338e-09 relres_final=1.756239e-09 relres_true=1.756239e-09
+functional: J_final=-7.087172398760496e+02 J_violations=0
+time: setup=0.000099 solve=0.000225 total=0.000328 (s)
+### grid=40x40 repeat=0
+code=serial M=40 N=40 threads=1 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=107
+norms: step_E=9.365493e-09 relres_final=3.689565e-10 relres_true=3.689565e-10
+functional: J_final=-4.058443235699925e+04 J_violations=0
+time: setup=0.000367 solve=0.001690 total=0.002069 (s)
+### grid=40x40 repeat=1
+code=serial M=40 N=40 threads=1 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=107
+norms: step_E=9.365493e-09 relres_final=3.689565e-10 relres_true=3.689565e-10
+functional: J_final=-4.058443235699925e+04 J_violations=0
+time: setup=0.000366 solve=0.001699 total=0.002078 (s)
+### grid=40x40 repeat=2
+code=serial M=40 N=40 threads=1 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=107
+norms: step_E=9.365493e-09 relres_final=3.689565e-10 relres_true=3.689565e-10
+functional: J_final=-4.058443235699925e+04 J_violations=0
+time: setup=0.000366 solve=0.001688 total=0.002067 (s)
+### grid=40x40 repeat=3
+code=serial M=40 N=40 threads=1 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=107
+norms: step_E=9.365493e-09 relres_final=3.689565e-10 relres_true=3.689565e-10
+functional: J_final=-4.058443235699925e+04 J_violations=0
+time: setup=0.000365 solve=0.001680 total=0.002058 (s)
+### grid=80x80 repeat=0
+code=serial M=80 N=80 threads=1 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=202
+norms: step_E=9.691288e-09 relres_final=9.227421e-11 relres_true=9.227419e-11
+functional: J_final=-2.692091028885586e+06 J_violations=0
+time: setup=0.001426 solve=0.012904 total=0.014379 (s)
+### grid=80x80 repeat=1
+code=serial M=80 N=80 threads=1 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=202
+norms: step_E=9.691288e-09 relres_final=9.227421e-11 relres_true=9.227419e-11
+functional: J_final=-2.692091028885586e+06 J_violations=0
+time: setup=0.001423 solve=0.012897 total=0.014369 (s)
+### grid=80x80 repeat=2
+code=serial M=80 N=80 threads=1 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=202
+norms: step_E=9.691288e-09 relres_final=9.227421e-11 relres_true=9.227419e-11
+functional: J_final=-2.692091028885586e+06 J_violations=0
+time: setup=0.001424 solve=0.012908 total=0.014381 (s)
+### grid=80x80 repeat=3
+code=serial M=80 N=80 threads=1 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=202
+norms: step_E=9.691288e-09 relres_final=9.227421e-11 relres_true=9.227419e-11
+functional: J_final=-2.692091028885586e+06 J_violations=0
+time: setup=0.001423 solve=0.012913 total=0.014385 (s)
+### grid=400x600 repeat=0
+code=serial M=400 N=600 threads=1 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=1316
+norms: step_E=9.954657e-09 relres_final=2.932177e-12 relres_true=2.932177e-12
+functional: J_final=-6.601561659249058e+10 J_violations=0
+time: setup=0.052719 solve=3.291918 total=3.346558 (s)
+### grid=400x600 repeat=1
+code=serial M=400 N=600 threads=1 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=1316
+norms: step_E=9.954657e-09 relres_final=2.932177e-12 relres_true=2.932177e-12
+functional: J_final=-6.601561659249058e+10 J_violations=0
+time: setup=0.052602 solve=3.314869 total=3.369394 (s)
+### grid=400x600 repeat=2
+code=serial M=400 N=600 threads=1 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=1316
+norms: step_E=9.954657e-09 relres_final=2.932177e-12 relres_true=2.932177e-12
+functional: J_final=-6.601561659249058e+10 J_violations=0
+time: setup=0.052568 solve=3.314520 total=3.369008 (s)
+### grid=400x600 repeat=3
+code=serial M=400 N=600 threads=1 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=1316
+norms: step_E=9.954657e-09 relres_final=2.932177e-12 relres_true=2.932177e-12
+functional: J_final=-6.601561659249058e+10 J_violations=0
+time: setup=0.052605 solve=3.331542 total=3.386061 (s)
+### grid=800x1200 repeat=0
+code=serial M=800 N=1200 threads=1 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=2530
+norms: step_E=9.752451e-09 relres_final=6.221304e-13 relres_true=6.221356e-13
+functional: J_final=-4.245138232626151e+12 J_violations=0
+time: setup=0.212103 solve=25.794766 total=26.014945 (s)
+### grid=800x1200 repeat=1
+code=serial M=800 N=1200 threads=1 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=2530
+norms: step_E=9.752451e-09 relres_final=6.221304e-13 relres_true=6.221356e-13
+functional: J_final=-4.245138232626151e+12 J_violations=0
+time: setup=0.217695 solve=26.098528 total=26.324026 (s)
+### grid=800x1200 repeat=2
+code=serial M=800 N=1200 threads=1 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=2530
+norms: step_E=9.752451e-09 relres_final=6.221304e-13 relres_true=6.221356e-13
+functional: J_final=-4.245138232626151e+12 J_violations=0
+time: setup=0.210157 solve=25.759767 total=25.977682 (s)
+### grid=800x1200 repeat=3
+code=serial M=800 N=1200 threads=1 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=2530
+norms: step_E=9.752451e-09 relres_final=6.221304e-13 relres_true=6.221356e-13
+functional: J_final=-4.245138232626151e+12 J_violations=0
+time: setup=0.210431 solve=25.771485 total=25.989667 (s)
+
+
+PS:
+
+Read file <serial.1617744.err> for stderr output of this job.
+

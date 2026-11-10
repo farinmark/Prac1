@@ -1,0 +1,155 @@
+Sender: LSF System <lsfadmin@polus-c4-ib.bmc.hpc.cs.msu.ru>
+Subject: Job 1617741: <p13_omp_400> in cluster <MSUCluster> Done
+
+Job <p13_omp_400> was submitted from host <polus-ib.bmc.hpc.cs.msu.ru> by user <edu-cmc-skmodel26-609-09> in cluster <MSUCluster> at Tue Nov 10 23:19:24 2026
+Job was executed on host(s) <polus-c4-ib.bmc.hpc.cs.msu.ru>, in queue <short>, as user <edu-cmc-skmodel26-609-09> in cluster <MSUCluster> at Tue Nov 10 23:19:24 2026
+</home_edu/edu-cmc-skmodel26-609/edu-cmc-skmodel26-609-09> was used as the home directory.
+</home_edu/edu-cmc-skmodel26-609/edu-cmc-skmodel26-609-09/Prac1> was used as the working directory.
+Started at Tue Nov 10 23:19:24 2026
+Terminated at Tue Nov 10 23:19:39 2026
+Results reported at Tue Nov 10 23:19:39 2026
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J p13_omp_400
+#BSUB -n 1
+#BSUB -W 00:15
+#BSUB -R "affinity[core(16)]"
+#BSUB -o omp_400.%J.out
+#BSUB -e omp_400.%J.err
+# Серия omp_400: 1 прогрев (repeat 0) + 3 повтора на каждую конфигурацию.
+export OMP_PROC_BIND=close OMP_PLACES=cores
+echo "host=$(hostname) LSB_JOBID=$LSB_JOBID cpus=$(taskset -pc $$ | sed 's/.*: //')"
+for t in 2 4 8 16; do
+    for r in 0 1 2 3; do
+        echo "### grid=400x600 threads=$t repeat=$r"
+        OMP_NUM_THREADS=$t ./bin/poisson_omp -M 400 -N 600
+    done
+done
+
+
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   74.17 sec.
+    Max Memory :                                 22 MB
+    Average Memory :                             17.60 MB
+    Total Requested Memory :                     -
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              4
+    Max Threads :                                20
+    Run time :                                   21 sec.
+    Turnaround time :                            15 sec.
+
+The output (if any) follows:
+
+host=polus-c4-ib.bmc.hpc.cs.msu.ru LSB_JOBID=1617741 cpus=0-127
+### grid=400x600 threads=2 repeat=0
+code=omp M=400 N=600 threads=2 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=1316
+norms: step_E=9.954657e-09 relres_final=2.932177e-12 relres_true=2.932180e-12
+functional: J_final=-6.601561659249188e+10 J_violations=0
+time: setup=0.028825 solve=1.785161 total=1.815240 (s)
+### grid=400x600 threads=2 repeat=1
+code=omp M=400 N=600 threads=2 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=1316
+norms: step_E=9.954657e-09 relres_final=2.932177e-12 relres_true=2.932180e-12
+functional: J_final=-6.601561659249188e+10 J_violations=0
+time: setup=0.028736 solve=1.789025 total=1.819005 (s)
+### grid=400x600 threads=2 repeat=2
+code=omp M=400 N=600 threads=2 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=1316
+norms: step_E=9.954657e-09 relres_final=2.932177e-12 relres_true=2.932180e-12
+functional: J_final=-6.601561659249188e+10 J_violations=0
+time: setup=0.028739 solve=1.798355 total=1.828356 (s)
+### grid=400x600 threads=2 repeat=3
+code=omp M=400 N=600 threads=2 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=1316
+norms: step_E=9.954657e-09 relres_final=2.932177e-12 relres_true=2.932180e-12
+functional: J_final=-6.601561659249188e+10 J_violations=0
+time: setup=0.028722 solve=1.793392 total=1.823367 (s)
+### grid=400x600 threads=4 repeat=0
+code=omp M=400 N=600 threads=4 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=1316
+norms: step_E=9.954657e-09 relres_final=2.932177e-12 relres_true=2.932171e-12
+functional: J_final=-6.601561659249139e+10 J_violations=0
+time: setup=0.015228 solve=0.905800 total=0.921929 (s)
+### grid=400x600 threads=4 repeat=1
+code=omp M=400 N=600 threads=4 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=1316
+norms: step_E=9.954657e-09 relres_final=2.932177e-12 relres_true=2.932171e-12
+functional: J_final=-6.601561659249138e+10 J_violations=0
+time: setup=0.015350 solve=0.907041 total=0.923300 (s)
+### grid=400x600 threads=4 repeat=2
+code=omp M=400 N=600 threads=4 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=1316
+norms: step_E=9.954657e-09 relres_final=2.932177e-12 relres_true=2.932171e-12
+functional: J_final=-6.601561659249138e+10 J_violations=0
+time: setup=0.015336 solve=0.908146 total=0.924394 (s)
+### grid=400x600 threads=4 repeat=3
+code=omp M=400 N=600 threads=4 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=1316
+norms: step_E=9.954657e-09 relres_final=2.932177e-12 relres_true=2.932171e-12
+functional: J_final=-6.601561659249138e+10 J_violations=0
+time: setup=0.015315 solve=0.909493 total=0.925708 (s)
+### grid=400x600 threads=8 repeat=0
+code=omp M=400 N=600 threads=8 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=1316
+norms: step_E=9.954657e-09 relres_final=2.932177e-12 relres_true=2.932177e-12
+functional: J_final=-6.601561659249127e+10 J_violations=0
+time: setup=0.008845 solve=0.500069 total=0.509690 (s)
+### grid=400x600 threads=8 repeat=1
+code=omp M=400 N=600 threads=8 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=1316
+norms: step_E=9.954657e-09 relres_final=2.932177e-12 relres_true=2.932177e-12
+functional: J_final=-6.601561659249127e+10 J_violations=0
+time: setup=0.008882 solve=0.499520 total=0.509180 (s)
+### grid=400x600 threads=8 repeat=2
+code=omp M=400 N=600 threads=8 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=1316
+norms: step_E=9.954657e-09 relres_final=2.932177e-12 relres_true=2.932177e-12
+functional: J_final=-6.601561659249127e+10 J_violations=0
+time: setup=0.008899 solve=0.500611 total=0.510292 (s)
+### grid=400x600 threads=8 repeat=3
+code=omp M=400 N=600 threads=8 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=1316
+norms: step_E=9.954657e-09 relres_final=2.932177e-12 relres_true=2.932176e-12
+functional: J_final=-6.601561659249129e+10 J_violations=0
+time: setup=0.008865 solve=0.499816 total=0.509463 (s)
+### grid=400x600 threads=16 repeat=0
+code=omp M=400 N=600 threads=16 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=1316
+norms: step_E=9.954657e-09 relres_final=2.932177e-12 relres_true=2.932177e-12
+functional: J_final=-6.601561659249114e+10 J_violations=0
+time: setup=0.005581 solve=0.443631 total=0.449999 (s)
+### grid=400x600 threads=16 repeat=1
+code=omp M=400 N=600 threads=16 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=1316
+norms: step_E=9.954657e-09 relres_final=2.932177e-12 relres_true=2.932176e-12
+functional: J_final=-6.601561659249113e+10 J_violations=0
+time: setup=0.005547 solve=0.450733 total=0.457063 (s)
+### grid=400x600 threads=16 repeat=2
+code=omp M=400 N=600 threads=16 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=1316
+norms: step_E=9.954657e-09 relres_final=2.932177e-12 relres_true=2.932177e-12
+functional: J_final=-6.601561659249114e+10 J_violations=0
+time: setup=0.005552 solve=0.444378 total=0.450711 (s)
+### grid=400x600 threads=16 repeat=3
+code=omp M=400 N=600 threads=16 host=polus-c4-ib.bmc.hpc.cs.msu.ru
+stop: delta=1.000e-08 status=CONVERGED reason=step_E_below_delta iters=1316
+norms: step_E=9.954657e-09 relres_final=2.932177e-12 relres_true=2.932177e-12
+functional: J_final=-6.601561659249114e+10 J_violations=0
+time: setup=0.005545 solve=0.444276 total=0.450607 (s)
+
+
+PS:
+
+Read file <omp_400.1617741.err> for stderr output of this job.
+

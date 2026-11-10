@@ -18,8 +18,8 @@ int main(int argc, char** argv) {
     res.t_setup = util::wtime() - T0;
 
     const double T1 = util::wtime();
-    std::vector<double> w;
-    pcg_solve(g, pb, P, w, res, nullptr);
+    std::vector<double> w, hist;
+    pcg_solve(g, pb, P, w, res, P.history ? &hist : nullptr);
     res.t_solve = util::wtime() - T1;
 
     res.relres_true = true_residual(g, pb, w);
@@ -42,5 +42,7 @@ int main(int argc, char** argv) {
     std::printf("functional: J_final=%.15e J_violations=%ld\n", res.J, res.J_viol);
     std::printf("time: setup=%.6f solve=%.6f total=%.6f (s)\n",
                 res.t_setup, res.t_solve, res.t_total);
+    for (size_t m = 0; m + 5 < hist.size(); m += 6)
+        std::printf("hist: %ld %.6e %.6e %.15e\n", (long)hist[m], hist[m + 1], hist[m + 2], hist[m + 3]);
     return res.status == "CONVERGED" ? 0 : 1;
 }

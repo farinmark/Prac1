@@ -11,7 +11,9 @@ static void usage() {
         "  -M <int>  -N <int>      число интервалов по x и y (по умолчанию 80 80)\n"
         "  --delta <real>          порог остановки ||w^{k+1}-w^k||_E < delta (1e-8)\n"
         "  --maxit <int>           лимит итераций (1000000)\n"
-        "  --restart               перезапуск PCG при нарушении монотонности J\n");
+        "  --restart               перезапуск PCG при нарушении монотонности J\n"
+        "  --history               напечатать историю итераций (строки hist: k step_E relres J)\n");
+        
 }
 
 Params parse_args(int argc, char** argv) {
@@ -24,6 +26,7 @@ Params parse_args(int argc, char** argv) {
         else if (a == "--delta" && has) p.delta = std::atof(argv[++k]);
         else if (a == "--maxit" && has) p.maxit = std::atol(argv[++k]);
         else if (a == "--restart") p.restart = true;
+        else if (a == "--history") p.history = true;
         else if (a == "-h" || a == "--help") { usage(); std::exit(0); }
         else { usage(); util::die("unknown option " + a); }
     }

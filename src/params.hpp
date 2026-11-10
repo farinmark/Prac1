@@ -6,6 +6,7 @@ struct Params {
     long maxit = 1000000;
     int hist_every = 1;
     bool restart = false;
+    bool history = false;
 };
 
 Params parse_args(int argc, char** argv);
